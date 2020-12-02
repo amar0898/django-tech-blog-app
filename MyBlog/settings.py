@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG_VALUE')
 
 
-ALLOWED_HOSTS = ['django-tech-blog.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['django-tech-blog-app.herokuapp.com']
 
 
 # Application definition
