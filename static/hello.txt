@@ -1,0 +1,1 @@
+hello this is a tech blog made using Django as backend

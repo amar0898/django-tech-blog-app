@@ -1,0 +1,55 @@
+{% extends 'basic.html' %}
+
+{% block title %} Home - TechGuy{% endblock title %}
+{% block homeactive %}active {% endblock homeactive %}
+{% block js %}
+<script>
+          let previews=document.getElementsByClassName('preview');
+          Array.from(previews).forEach((element)=>{
+             element.innerHTML=element.innerText;
+          })
+
+</script>
+{% endblock js %}
+
+{% block body %}
+
+<div class="container">
+    <div class="jumbotron my-3">
+        <h1 class="display-4"><b>Welcome to TechGuy!</b></h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+            featured content or information.</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <a class="btn btn-success btn-lg" href="/blog" role="button">Go to Blog Section <i class="fa fa-fw fa-arrow-right fa-lg"></i></a>
+    </div>
+</div>
+<div class="container">
+    <h2>Popular Blogposts</h2>
+    {% for post in posts %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="mb-0">{{post.title}}</h3>
+            <div class="mb-1 text-muted"><b>{{post.timeStamp}}</b></div>
+            <p class="card-text mb-auto"><div class="preview">{{post.content|safe| truncatechars:500}}</div></p>
+            <div class="my-2">
+                <a href="/blog/{{post.slug}}" role="button" class="btn btn-success">Continue reading <i class="fa fa-fw fa-arrow-right fa-lg"></i></a>
+            </div>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <svg class="bd-placeholder-img" width="200" height="350" xmlns="http://www.aptuz.com/static/media/uploads/blog/djn.png"
+                 preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#55595c"></rect>
+                <text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+            </svg>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<footer class="pb-5">
+  <div class="container text-center">
+      <p class="font-italic text-muted mb-0"><b>&copy; Copyrights TechGuy.com All rights reserved.</b></p>
+  </div>
+</footer>
+{% endblock %}

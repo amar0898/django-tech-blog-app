@@ -1,0 +1,45 @@
+{% extends 'basic.html' %}
+
+{% block js %}
+<script>
+          let previews=document.getElementsByClassName('preview');
+          Array.from(previews).forEach((element)=>{
+             element.innerHTML=element.innerText;
+          })
+
+
+</script>
+{% endblock js %}
+
+{% block title %} BlogHome - TechGuy {% endblock title %}
+{% block blogactive %} active {% endblock blogactive %}
+
+
+{% block body %}
+<div class="container my-3">
+    <h2>Recent Articles by TechGuy</h2>
+    {% for post in posts %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+             <strong class="d-inline-block mb-2 text-success">Written By {{post.author}} <span><i
+                    class="fa fa-eye fa-lg"></i> {{post.views}} views</span></strong>
+
+            <h3 class="mb-0"><a class="text-dark" href="/blog/{{post.slug}}">{{post.title}}</a></h3>
+            <div class="mb-1 text-muted"><b>{{post.timeStamp}}</b></div>
+            <p class="card-text mb-auto">
+            <div class="preview">{{post.content|safe| truncatechars:300}}</div>
+            </p>
+            <div class="my-2">
+                <a href="/blog/{{post.slug}}" role="button" class="btn btn-success">Continue reading <i
+                        class="fa fa-fw fa-arrow-right fa-lg"></i></a>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="container text-center mb-2">
+        <p class="font-italic text-muted mb-0"><b>&copy; Copyrights TechGuy.com All rights reserved.</b></p>
+    </div>
+
+    {% endblock %}
